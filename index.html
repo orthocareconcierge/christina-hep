@@ -346,6 +346,30 @@ body {
   #page-report .page-header { display: none !important; }
   #print-area { margin: 0 !important; border-radius: 0 !important; }
 }
+
+/* ===================== STRENGTH ===================== */
+.str-params{font-size:11px;color:var(--gold);text-align:center;margin-bottom:14px;letter-spacing:0.03em;font-weight:300;line-height:1.6;}
+.str-day-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;}
+.str-day-btn{background:var(--charcoal);border:1px solid rgba(201,168,76,0.18);border-radius:8px;padding:12px 5px;color:var(--muted);font-family:'Jost',sans-serif;font-size:11px;font-weight:500;cursor:pointer;}
+.str-day-btn.active{border-color:var(--gold);color:var(--white);background:linear-gradient(135deg,var(--charcoal),rgba(201,168,76,0.08));}
+.str-opt-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;}
+.str-opt-btn{background:var(--dark);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:9px;color:var(--muted);font-family:'Jost',sans-serif;font-size:11px;font-weight:500;cursor:pointer;}
+.str-opt-btn.active{border-color:var(--gold);color:var(--gold);}
+.str-opt-sub{font-size:11px;color:var(--muted);text-align:center;margin-bottom:12px;font-weight:300;letter-spacing:0.04em;}
+.hr-table{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:8px;}
+.hr-table th{background:rgba(201,168,76,0.08);color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;font-size:9px;padding:6px 7px;border:1px solid rgba(255,255,255,0.07);text-align:left;}
+.hr-table td{padding:6px 7px;border:1px solid rgba(255,255,255,0.07);color:var(--muted);font-weight:300;}
+.hr-table td:nth-child(3){color:var(--white);font-weight:500;}
+.str-hrnote{font-size:11px;color:var(--muted);line-height:1.6;font-weight:300;margin-bottom:6px;padding-left:2px;}
+.str-card{background:var(--charcoal);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:13px;margin-bottom:10px;}
+.str-name{font-size:14px;font-weight:500;color:var(--white);line-height:1.25;}
+.str-cue{font-size:12px;color:var(--muted);font-weight:300;line-height:1.5;margin:3px 0 10px;}
+.str-log{border-top:1px solid rgba(255,255,255,0.06);padding-top:9px;}
+.str-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.str-rn{font-size:11px;color:var(--gold);width:26px;flex-shrink:0;}
+.str-in{flex:1;background:var(--dark);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:'Jost',sans-serif;font-size:12px;padding:7px 8px;min-width:0;}
+.str-in:focus{outline:none;border-color:var(--gold);}
+.str-add{background:none;border:1px dashed rgba(201,168,76,0.3);color:var(--gold);border-radius:6px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;padding:6px;width:100%;cursor:pointer;margin-top:3px;}
 </style>
 </head>
 <body>
@@ -383,6 +407,11 @@ body {
       <span class="nav-icon" style="color:var(--gold)">&#9888;&#65038;</span>
       <h3>Precautions</h3>
       <p>Stay safe</p>
+    </div>
+    <div class="nav-card" onclick="showPage('strength')">
+      <span class="nav-icon">&#128170;</span>
+      <h3>Strength</h3>
+      <p>Circuit training</p>
     </div>
   </div>
   <p class="proprietary-line">
@@ -444,6 +473,24 @@ body {
   </div>
 </div>
 
+<!-- ==================== STRENGTH ==================== -->
+<div id="page-strength" class="page">
+  <div class="page-header"><button class="back-btn" onclick="showHome()">&#8592; Home</button><h2>Strength</h2><p class="page-sub">Circuit training</p></div>
+  <div class="page-content">
+    <div class="card card-gold intro-card"><p id="str-intro"></p></div>
+    <div class="str-params" id="str-params"></div>
+    <div class="section-label">Pick Your Day</div>
+    <div class="str-day-row" id="str-day-row"></div>
+    <div class="str-opt-row" id="str-opt-row"></div>
+    <div class="str-opt-sub" id="str-opt-sub"></div>
+    <div class="section-label">Target Heart Rate Zones</div>
+    <div id="str-hr"></div>
+    <div class="str-hrnote" id="str-hrnote"></div>
+    <div class="section-label">Circuit</div>
+    <div id="str-list"></div>
+  </div>
+</div>
+
 <!-- ==================== PRECAUTIONS ==================== -->
 <div id="page-precautions" class="page">
   <div class="page-header">
@@ -490,6 +537,7 @@ body {
   <button class="bottom-nav-btn" onclick="showPage('program'); showProgramTab('progress')"><span class="nav-ico">&#128202;</span><span class="nav-lbl">Progress</span></button>
   <button class="bottom-nav-btn" onclick="showPage('goals')"><span class="nav-ico">&#127919;</span><span class="nav-lbl">Goals</span></button>
   <button class="bottom-nav-btn" onclick="showPage('precautions')"><span class="nav-ico" style="color:var(--gold)">&#9888;&#65038;</span><span class="nav-lbl">Safety</span></button>
+  <button class="bottom-nav-btn" onclick="showPage('strength')"><span class="nav-ico">&#128170;</span><span class="nav-lbl">Strength</span></button>
   <button class="bottom-nav-btn" onclick="showHome()"><span class="nav-ico">&#127968;</span><span class="nav-lbl">Home</span></button>
 </div>
 
@@ -571,6 +619,23 @@ const precautions = {
 };
 
 // =====================================================================
+// --- STRENGTH (circuits) ---------------------------------------------
+const strengthIntro = 'Three days a week: one Upper, one Lower, one Full Body and Core. Each day is a circuit, so pick Option 1 or Option 2, then do 6 reps of each move leaving about 2 in reserve, moving between stations with only 15 to 30 seconds of rest. Rest 1 to 2 minutes between rounds, 3 to 4 rounds, 20 to 30 minutes of lifting. The short rests keep your heart rate up while the low reps keep it real strength.';
+const strengthParams = '6 reps at 2 in reserve  ·  15 to 30 sec between moves  ·  1 to 2 min between rounds  ·  3 to 4 rounds';
+const strengthHRNote = 'About 5 minutes warming up in Zone 1 to 2, then 20 to 25 minutes in the circuit living mostly in Zone 3 with brief spikes into Zone 4 on your work sets, then about 5 minutes cooling down in Zone 1 to 2. Zone 5 is not a target.';
+const hrZones = [
+  { z:'1 Warm-up', pct:'50 to 60%', bpm:'81 to 97', use:'Warm-up and cool-down' },
+  { z:'2 Endurance', pct:'60 to 70%', bpm:'97 to 113', use:'Easy aerobic base' },
+  { z:'3 Aerobic', pct:'70 to 80%', bpm:'113 to 130', use:'Main circuit target' },
+  { z:'4 Threshold', pct:'80 to 90%', bpm:'130 to 146', use:'Brief spikes on work sets' },
+  { z:'5 Max', pct:'90 to 100%', bpm:'146 to 162', use:'Not a target' },
+];
+const strengthDays = [
+  { key:'upper', label:'Upper', options:{ '1':{ sub:'Option 1 - machine focus', ex:[{ name: 'Chest Press Machine', note: 'Moderate load. Press to 6 reps leaving about 2 in reserve, controlled.' }, { name: 'Seated Cable Row', note: 'Row to your ribs, squeeze the shoulder blades, tall neutral spine.' }, { name: 'Shoulder Press Machine', note: 'Press up without shrugging. Stop just short of a hard lockout.' }, { name: 'Lat Pulldown', note: 'Pull to your collarbone, lead with the elbows, control the way up.' }, { name: 'Triceps Pushdown + Biceps Curl', note: 'Superset the two back to back, controlled tempo, elbows quiet.' }, { name: 'Band Pull-Aparts', note: 'Open the band by squeezing the shoulder blades, shoulders down.' }] }, '2':{ sub:'Option 2 - free weight', ex:[{ name: 'DB Bench or Floor Press', note: 'Control the lower, stop short of locking out.' }, { name: '1-Arm DB Row', note: 'Flat back, row to the ribs, do not twist the trunk.' }, { name: 'DB or Landmine Overhead Press', note: 'Press without flaring the ribs or arching the low back.' }, { name: 'Assisted Pull-Up or Lat Pulldown', note: 'Full but controlled range, lead with the elbows.' }, { name: 'DB Curl + Overhead DB Triceps', note: 'Superset, elbows tucked, no swinging.' }, { name: 'Face Pulls', note: 'Pull toward your forehead, elbows high, squeeze the rear delts.' }] } } },
+  { key:'lower', label:'Lower', options:{ '1':{ sub:'Option 1 - machine focus', ex:[{ name: 'Leg Press', note: 'Press through the whole foot, exhale on the push, do not slam the knees.' }, { name: 'Kickstand RDL', note: 'Back foot light like a kickstand, hinge the hips back with a long flat back.' }, { name: 'Single Leg Sit to Stand', note: 'Most of your weight on the working leg, drive through the heel, lower slow.' }, { name: 'Seated Leg Curl', note: 'Curl the heels under, squeeze the hamstrings, return slow.' }, { name: 'Hip Abduction Machine', note: 'Press the knees out, control the return. Good for the left hip.' }, { name: 'Calf Raise Machine', note: 'Rise onto the balls of the feet, lower slow, ankles track straight.' }] }, '2':{ sub:'Option 2 - free weight', ex:[{ name: 'Goblet Squat', note: 'Weight at the chest, sit between the hips, knees over toes, braced neutral spine.' }, { name: 'Kickstand RDL', note: 'Back foot light, hinge the hips back, long flat back, drive the hips to stand.' }, { name: 'Reverse Lunge', note: 'Step back, lower the back knee, front knee over the ankle, drive through the front heel.' }, { name: 'Single Leg Glute Bridge', note: 'One foot planted, drive through the heel, lift the hips, squeeze the glute, do not arch.' }, { name: 'Lateral Band Walk', note: 'Band above the knees, athletic stance, keep tension the whole way.' }, { name: 'Standing Calf Raise', note: 'Rise onto the balls of the feet, lower slow and controlled.' }] } } },
+  { key:'core', label:'Full / Core', options:{ '1':{ sub:'Option 1 - machine and mixed', ex:[{ name: 'Leg Press', note: 'Press through the whole foot, controlled and braced.' }, { name: 'Chest Press Machine', note: 'Press to 6 reps at 2 in reserve, control the return.' }, { name: 'Seated Cable Row', note: 'Row to the ribs, squeeze the shoulder blades, tall spine.' }, { name: 'Weighted Bridge', note: 'Weight across the hips, drive through the heels, squeeze the glutes, ribs down, no arch.' }, { name: 'Suitcase Carry', note: 'Weight in one hand, walk tall, do not let it tip you sideways. Switch hands.' }, { name: 'Pallof Press + Side Plank', note: 'Pallof: resist the rotation, hold tall. Side plank: straight line, hips stacked.' }] }, '2':{ sub:'Option 2 - free weight', ex:[{ name: 'Goblet Squat', note: 'Sit between the hips, braced neutral spine, drive up through the heels.' }, { name: 'DB Push Press', note: 'Small dip and drive the weights overhead, stop short of locking hard.' }, { name: '1-Arm DB Row', note: 'Flat back, row to the ribs, no trunk twist.' }, { name: 'Weighted Bridge', note: 'Weight across the hips, drive through the heels, squeeze, ribs down.' }, { name: 'Farmer Carry', note: 'A weight in each hand, walk tall and braced, shoulders down.' }, { name: 'Bird Dog + Dead Bug', note: 'Bird dog: opposite arm and leg, flat back. Dead bug: low back pressed down, move slow.' }] } } },
+];
+
 // ============  END OF DATA BLOCK  -  DO NOT EDIT BELOW  ==============
 // =====================================================================
 
@@ -622,6 +687,7 @@ function showPage(id) {
   if (id === 'program') renderToday();
   if (id === 'goals') renderGoals();
   if (id === 'precautions') renderPrecautions();
+  if (id === 'strength') renderStrength();
   if (id === 'report') renderReport();
   window.scrollTo(0, 0);
 }
@@ -632,6 +698,33 @@ function showProgramTab(tab) {
   document.getElementById('tab-progress').classList.toggle('active', tab === 'progress');
   if (tab === 'today') renderToday();
   if (tab === 'progress') renderProgress();
+}
+
+// ---------- STRENGTH (circuits) ----------
+let strDay = (typeof hepLog['str-day'] === 'string') ? hepLog['str-day'] : 'upper';
+let strOpt = (typeof hepLog['str-opt'] === 'string') ? hepLog['str-opt'] : '1';
+function setStrDay(k){ strDay = k; hepLog['str-day'] = k; saveAll(); renderStrength(); }
+function setStrOpt(o){ strOpt = o; hepLog['str-opt'] = o; saveAll(); renderStrength(); }
+function strSets(day, opt, i){ const k = 'str-' + day + '-' + opt + '-' + i; const a = hepLog[k]; return (Array.isArray(a) && a.length) ? a : [{},{},{}]; }
+function strSet(day, opt, i, ri, f, v){ const k = 'str-' + day + '-' + opt + '-' + i; let a = hepLog[k]; if (!Array.isArray(a) || !a.length) a = [{},{},{}]; if (!a[ri]) a[ri] = {}; a[ri][f] = v; hepLog[k] = a; saveAll(); }
+function strAddRound(day, opt, i){ const k = 'str-' + day + '-' + opt + '-' + i; const a = strSets(day, opt, i).slice(); a.push({}); hepLog[k] = a; saveAll(); renderStrength(); }
+function renderStrength(){
+  document.getElementById('str-intro').textContent = strengthIntro;
+  document.getElementById('str-params').textContent = strengthParams;
+  document.getElementById('str-hrnote').textContent = strengthHRNote;
+  document.getElementById('str-day-row').innerHTML = strengthDays.map(function(d){ return '<button class="str-day-btn' + (strDay === d.key ? ' active' : '') + '" onclick="setStrDay(\'' + d.key + '\')">' + d.label + '</button>'; }).join('');
+  document.getElementById('str-opt-row').innerHTML = ['1','2'].map(function(o){ return '<button class="str-opt-btn' + (strOpt === o ? ' active' : '') + '" onclick="setStrOpt(\'' + o + '\')">Option ' + o + '</button>'; }).join('');
+  const day = strengthDays.find(function(d){ return d.key === strDay; }) || strengthDays[0];
+  const opt = day.options[strOpt] || day.options['1'];
+  document.getElementById('str-opt-sub').textContent = opt.sub;
+  document.getElementById('str-hr').innerHTML = '<table class="hr-table"><tr><th>Zone</th><th>% Max</th><th>BPM</th><th>Use</th></tr>' + hrZones.map(function(z){ return '<tr><td>' + z.z + '</td><td>' + z.pct + '</td><td>' + z.bpm + '</td><td>' + z.use + '</td></tr>'; }).join('') + '</table>';
+  document.getElementById('str-list').innerHTML = opt.ex.map(function(ex, i){
+    const sets = strSets(strDay, strOpt, i);
+    const rows = sets.map(function(s, ri){ return '<div class="str-row"><span class="str-rn">R' + (ri+1) + '</span>' +
+      '<input class="str-in" inputmode="numeric" placeholder="reps" value="' + (s.reps || '') + '" onchange="strSet(\'' + strDay + '\',\'' + strOpt + '\',' + i + ',' + ri + ',\'reps\',this.value)">' +
+      '<input class="str-in" placeholder="weight" value="' + (s.wt || '') + '" onchange="strSet(\'' + strDay + '\',\'' + strOpt + '\',' + i + ',' + ri + ',\'wt\',this.value)"></div>'; }).join('');
+    return '<div class="str-card"><div class="str-name">' + ex.name + '</div><div class="str-cue">' + ex.note + '</div><div class="str-log">' + rows + '<button class="str-add" onclick="strAddRound(\'' + strDay + '\',\'' + strOpt + '\',' + i + ')">+ round</button></div></div>';
+  }).join('');
 }
 
 // ---------- SECTION HELPERS ----------
